@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:testing_flutter_apps_workshop/core/utils/validators.dart';
 import 'package:testing_flutter_apps_workshop/di/injection_container.dart';
 import 'package:testing_flutter_apps_workshop/features/auth/login/presentation/cubit/login_cubit.dart';
 import 'package:testing_flutter_apps_workshop/features/auth/login/presentation/widgets/login_form.dart';

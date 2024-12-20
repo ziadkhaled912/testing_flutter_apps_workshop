@@ -2,6 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
+import 'package:testing_flutter_apps_workshop/di/injection_container.dart';
+import 'package:testing_flutter_apps_workshop/features/auth/core/data/repository/auth_repository.dart';
+import 'package:testing_flutter_apps_workshop/features/auth/login/presentation/cubit/login_cubit.dart';
+
+import '../mocks/data/auth/repository/mock_auth_repository.dart';
+
+final authRepository = MockAuthRepository();
 
 Widget makeTestableWidget({
   required Widget child,
@@ -48,4 +55,20 @@ Future<void> pumpMaterialWidget(
     await tester.pump();
     await tester.pump();
   }
+}
+
+Future<void> initSignedOutUser() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureTestDependencies();
+  locator
+    ..unregister<AuthRepository>()
+    ..registerLazySingleton<AuthRepository>(() => authRepository)
+    ..unregister<LoginCubit>()
+    ..registerFactory<LoginCubit>(() => LoginCubit(authRepository));
+    await Future.delayed(const Duration(milliseconds: 300));
+}
+
+Future<void> configureTestDependencies() async {
+  await locator.reset();
+  configureDependencies();
 }
