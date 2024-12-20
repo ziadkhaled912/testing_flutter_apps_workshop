@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:testing_flutter_apps_workshop/features/auth/login/presentation/pages/login_page.dart';
 
 class AppRouter {
   static GoRouter router() => GoRouter(
@@ -8,8 +9,12 @@ class AppRouter {
             child: Text('Error 404'),
           );
         },
+        initialLocation: LoginPage.id,
         routes: [
-          // GoRoute(path: '/', pageBuilder: (context, state) => const SplashPage()),
+          GoRoute(
+            path: LoginPage.id,
+            builder: (context, state) => const LoginPage(),
+          ),
         ],
       );
 }
