@@ -21,6 +21,10 @@ dependencies:
   dartz: ^0.10.1
   firebase_auth: ^5.3.4
   firebase_core: ^3.9.0
+  bloc: ^8.1.4
+  flutter_bloc: ^8.1.6
+  flash: ^3.1.1
+  bloc_test: ^9.1.7
 
 dev_dependencies:
   flutter_test:
